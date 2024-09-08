@@ -19,20 +19,20 @@ void loop()
   {
     data = mySerial.read();
     // Serial.print(data);
-    if (data == marker[index])
+    if (data == marker[index]) // Mendeteksi data = e atau n atau d
     {
-      index++;
-      if (index == marker.length())
+      index++; // Kalau iya maka pembacaan dilanjutkan
+      if (index == marker.length()) // Jika sudah terpenuhi [2] = panjang end = 3 
       {
-        Serial.println(filtered_data);
-        filtered_data = "";
-        index = 0;
+        Serial.println(filtered_data); // Maka print data yang memenuhi syarat
+        filtered_data = ""; // Reset untuk pembacaan selanjutnya
+        index = 0; // Reset index juga 
       }
     }
-    else
+    else // Kalau tidak terdeteksi e atau n atau d
     {
-      filtered_data += data;
-      index = 0;
+      filtered_data += data; // Maka data dimasukkan ke kotak kosong (filtered_data)
+      index = 0; // Menjaga index tetap kereset
     }
   }
   else
