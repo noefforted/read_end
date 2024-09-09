@@ -6,7 +6,7 @@ SoftwareSerial mySerial(11, 10);
 char data;
 String marker = "end";
 String filtered_data = "";
-int index = 0;
+unsigned int index = 0;
 void setup()
 {
   Serial.begin(115200);
@@ -26,7 +26,7 @@ void loop()
       index++;                      // Kalau iya maka pembacaan dilanjutkan
       if (index == marker.length()) // Jika sudah terpenuhi [2] = panjang end = 3
       {
-        Serial.print(" Data yang terfilter: ");
+        Serial.print(" ====> Data yang terfilter: ");
         Serial.println(filtered_data); // Maka print data di wadah
         filtered_data = "";            // Reset untuk pembacaan selanjutnya
         index = 0;                     // Reset index juga
