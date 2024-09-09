@@ -18,21 +18,24 @@ void loop()
   if (mySerial.available())
   {
     data = mySerial.read();
-    // Serial.print(data);
+    // data = "12en13end14nd15end";
+    // Serial.print(" ");
+    Serial.print(data);
     if (data == marker[index]) // Mendeteksi data = e atau n atau d
     {
-      index++; // Kalau iya maka pembacaan dilanjutkan
-      if (index == marker.length()) // Jika sudah terpenuhi [2] = panjang end = 3 
+      index++;                      // Kalau iya maka pembacaan dilanjutkan
+      if (index == marker.length()) // Jika sudah terpenuhi [2] = panjang end = 3
       {
-        Serial.println(filtered_data); // Maka print data yang memenuhi syarat
-        filtered_data = ""; // Reset untuk pembacaan selanjutnya
-        index = 0; // Reset index juga 
+        Serial.print(" Data yang terfilter: ");
+        Serial.println(filtered_data); // Maka print data di wadah
+        filtered_data = "";            // Reset untuk pembacaan selanjutnya
+        index = 0;                     // Reset index juga
       }
     }
-    else // Kalau tidak terdeteksi e atau n atau d
+    else if (data != 'e' || data != 'n' || data != 'd') // Kalau tidak terdeteksi e atau n atau d
     {
-      filtered_data += data; // Maka data dimasukkan ke kotak kosong (filtered_data)
-      index = 0; // Menjaga index tetap kereset
+      filtered_data += data; // Maka data dimasukkan ke wadah (filtered_data)
+      index = 0;             // Menjaga index tetap kereset
     }
   }
   else
